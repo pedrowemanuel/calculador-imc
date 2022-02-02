@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextInput, View, Text, Button, StyleSheet } from 'react-native';
+import { TextInput, View, Text, TouchableOpacity, Keyboard } from 'react-native';
 import ResultImc from './ResultImc';
 import styles from './style';
 
@@ -49,10 +49,13 @@ export default function Form() {
                     placeholder="Exemplo. 70.759"
                     keyboardType="numeric"
                 />
-                <Button
+                <TouchableOpacity
+                  style={styles.buttonCalculator}
                   onPress={() => validatorImc()}
-                  title={textButton}
-                />
+                  onPress={Keyboard.dismiss}
+                >
+                    <Text style={styles.textButtonCalculator}>{textButton}</Text>
+                </TouchableOpacity>
             </View>
             <ResultImc
                 messageResultImc={messageImc}

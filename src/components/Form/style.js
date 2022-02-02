@@ -28,7 +28,22 @@ const styles = StyleSheet.create({
         backgroundColor: "#f6f6f6",
         height: 50,
         margin: 12,
-        paddingLeft: 10,
+        paddingLeft: 20,
+    },
+    buttonCalculator: {
+        backgroundColor: "#ff0043",
+        borderRadius: 20,
+        alignItems: "center",
+        justifyContent: "center",
+        width: "90%",
+        paddingTop: 14,
+        paddingBottom: 14,
+        marginLeft: 12,
+        marginTop: 30,
+    },
+    textButtonCalculator: {
+        fontSize: 20,
+        color: "#fff"
     }
 });
 
