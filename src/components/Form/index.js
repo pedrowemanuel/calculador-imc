@@ -5,7 +5,8 @@ import {
     Text,
     TouchableOpacity,
     Keyboard,
-    Vibration
+    Vibration,
+    Pressable
 } from 'react-native';
 import ResultImc from './ResultImc';
 import styles from './style';
@@ -20,7 +21,9 @@ export default function Form() {
     const [errorMessage, setErrorMessage] = useState(null);
 
     function imcCalculator() {
-        return setImc((weight/(height * height)).toFixed(2));
+        let heightFormat =  height.replace(",",".");
+        let weightFormat = weight.replace(",",".");
+        return setImc((weightFormat/(heightFormat * heightFormat)).toFixed(2).replace(".",","));
     }
 
     function verificationImc() {
@@ -53,7 +56,10 @@ export default function Form() {
     }
 
     return (
-        <View style={styles.formContext}>
+        <Pressable
+            onPress={Keyboard.dismiss}
+            style={styles.formContext}
+        >
             <View style={styles.form}>
                 <Text style={styles.formLabel} >Altura (metros)</Text>
                 <Text style={styles.errorMessage} >{errorMessage}</Text>
@@ -61,7 +67,7 @@ export default function Form() {
                     style={styles.input}
                     onChangeText={setHeight}
                     value={height}
-                    placeholder="Exemplo. 1.69"
+                    placeholder="Exemplo. 1,69"
                     keyboardType="numeric"
                 />
                 <Text style={styles.formLabel} >Peso (quilos)</Text>
@@ -70,7 +76,7 @@ export default function Form() {
                     style={styles.input}
                     onChangeText={setWeight}
                     value={weight}
-                    placeholder="Exemplo. 70.759"
+                    placeholder="Exemplo. 70,759"
                     keyboardType="numeric"
                 />
                 <TouchableOpacity
@@ -84,7 +90,7 @@ export default function Form() {
                 messageResultImc={messageImc}
                 resultImc={imc}
             />
-        </View>
+        </Pressable>
     );
 }
 
